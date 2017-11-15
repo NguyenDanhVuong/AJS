@@ -1,0 +1,223 @@
+
+<!-- ngIf: isSignedIn -->
+<section class="container ng-scope" ng-show="isSignedIn" ng-init="getAllPlaylist()" ng-if="isSignedIn">
+    <div class="col-md-2 col-sm-4">
+        <ul class="nav nav-pills nav-stacked text-center">
+            <li role="presentation" ng-class="{active:isActivePlaylistSidebar('playlist')}" class=""><a href="" ng-click="switchPage('playlist')">Playlist</a></li>
+            <li role="presentation" ng-class="{active:isActivePlaylistSidebar('addPlaylist')}" class="active"><a href="" ng-click="switchPage('addPlaylist')">Thêm Playlist</a></li>
+        </ul>
+    </div>
+    <div class="col-md-10 col-sm-8" ng-switch="page">
+        <!-- Playlist -->
+
+        <!-- ngSwitchWhen: playlist -->
+
+        <!-- Add Playlist -->
+            <!-- ngSwitchWhen: addPlaylist --><div ng-switch-when="addPlaylist" class="ng-scope">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Playlist</h3>
+                    </div>
+                    <div class="panel-body">
+                        <!-- Alert -->
+                        <div class="alert alert-success text-center ng-hide" ng-show="uploadSuccess">
+                            <span class="glyphicon glyphicon-ok"></span> Bạn đã tạo playlist thành công
+                        </div>
+                        <!-- Form -->
+                        <form action="post" class="form-horizontal ng-pristine ng-invalid ng-invalid-required ng-valid-minlength" name="form" novalidate="">
+                            <!-- Name -->
+                            <div class="form-group has-feedback" ng-class="{'has-warning': form.name.$error.minlength,
+                                            'has-success': form.name.$valid}">
+                                <label for="name" class="control-label col-md-2 col-sm-2">Tên Playlist</label>
+                                <div class="col-md-5 col-sm-5">
+                                    <input name="name" type="text" class="form-control ng-pristine ng-untouched ng-empty ng-invalid ng-invalid-required ng-valid-minlength" placeholder="Tên Playlist của bạn" ng-model="playlistData.data.attributes.name" ng-minlength="7" required="">
+                                    <span class="glyphicon glyphicon-ok form-control-feedback ng-hide" ng-show="form.name.$valid"></span>
+                                    <span class="glyphicon glyphicon-warning-sign form-control-feedback ng-hide" ng-show="form.name.$error.minlength"></span>
+                                    <div class="text-warning ng-hide" ng-show="form.name.$error.minlength">
+                                        Tên Playlist có ít nhất 7 ký tự
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Description -->
+                            <div class="form-group">
+                                <label for="description" class="control-label col-md-2 col-sm-2">Mô tả</label>
+                                <div class="col-md-5 col-sm-5">
+                        <textarea name="description" type="text" class="form-control ng-pristine ng-untouched ng-valid ng-empty" placeholder="Mô tả playlist" rows="5" ng-model="playlistData.data.attributes.description"></textarea>
+                                </div>
+                            </div>
+                            <!-- Thumbnail -->
+                            <div class="form-group">
+                                <label for="thumbnail" class="control-label col-md-2 col-sm-2">Thumbnail</label>
+                                <div class="col-md-5 col-sm-5">
+                                    <input name="thumbnail" type="text" class="form-control ng-pristine ng-untouched ng-valid ng-empty" placeholder="Ảnh bìa cho Playlist" ng-model="playlistData.data.attributes.thumbnailUrl">
+                                </div>
+                            </div>
+                            <!-- Button -->
+                            <div class="form-group">
+                                <div class="col-md-2 col-sm-2">
+                                    &nbsp;
+                                </div>
+                                <div class="col-md-10 col-sm-10">
+                                    <button type="button" class="btn btn-primary" ng-disabled="form.$invalid" ng-click="doSubmit()" disabled="disabled"><span class="glyphicon glyphicon-send"></span> Submit</button>
+                                    <button type="reset" class="btn btn-default" ng-click="resetForm()"><span class="glyphicon glyphicon-refresh"></span> Reset</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="panel-footer">
+                        * Nhắc nhở: <strong>Tên Playlist phải có ít nhất 7 ký tự</strong>
+                    </div>
+                </div>
+            </div><!-- end ngSwitchWhen: -->
+              <!-- choosen playlist -->
+            <!-- ngSwitchWhen: choosenPlaylistPage -->
+    </div>
+</section><!-- end ngIf: isSignedIn -->
+<!-- Alert when no Playlist -->
+<!-- <section class="modal fade" id="alertNoPlaylist" role="dialog" style="display: none;">
+    <div class="modal-dialog modal-sm">
+        <!-- Modal content-->
+        <!-- <div class="modal-content">
+            <div class="modal-body">
+                <button type="button" class="close" data-dismiss="modal">×</button>
+                <div class="text-center text-info">
+                    <h4>Chào mừng bạn đến với MyTube</h4>
+                    <p>Hãy tạo nhanh một playlist để tận hưởng những tính năng của chúng tôi nhé!</p>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section> --> 
+
+<section class="modal fade" id="alertNoSignin" role="dialog">
+    <div class="modal-dialog modal-sm">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-body">
+                <button type="button" class="close" data-dismiss="modal">×</button>
+                <div class="text-center text-info">
+                    <h4>Bạn chưa đăng nhập</h4>
+                    <p>Trước hết hãy đăng nhập, hoặc đăng ký nếu bạn chưa có tài khoản.</p>
+                    <a href="#!signin" class="btn btn-primary">Đăng nhập</a>
+                    <a href="#!signup" class="btn btn-danger">Đăng ký</a>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Modal Edit -->
+<section class="modal fade" id="editModal" role="dialog" ng-init="createEditData()">
+    <div class="modal-dialog modal-lg">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">×</button>
+
+                <h4 class="modal-title video-title text-center">Chỉnh sửa Video</h4>
+            </div>
+            <div class="modal-body">
+                <!-- Alert Success -->
+                <div class="alert alert-success text-center ng-hide" ng-show="editSuccess">
+                    <span class="glyphicon glyphicon-ok"></span> <strong>Sửa thông tin video thành công</strong>
+                </div>
+                <!-- Alert Error -->
+                <div class="alert alert-danger text-center ng-hide" ng-show="editError">
+                    <span class="glyphicon glyphicon-remove"></span> <strong class="ng-binding"></strong>
+                </div>
+                <form action="post" class="form-horizontal ng-invalid ng-invalid-required ng-valid-minlength ng-valid-maxlength ng-dirty ng-valid-parse" name="form" ng-submit="submit()" novalidate="">
+                    <div class="form-group">
+                        <label for="videoId" class="control-label col-md-2 col-sm-2">Video ID <strong class="text-danger">*</strong></label>
+                        <div class="col-md-5 col-sm-5">
+                            <input name="videoId" type="text" class="form-control ng-pristine ng-untouched ng-valid ng-empty" disabled="true" ng-model="editData.data.attributes.youtubeId">
+                        </div>
+
+                    </div>
+
+                    <!--Name-->
+                    <div class="form-group">
+                        <label for="name" class="control-label col-md-2 col-sm-2">Tên Video <strong class="text-danger">*</strong></label>
+                        <div class="col-md-5 col-sm-5">
+                            <input name="name" type="text" class="form-control ng-pristine ng-untouched ng-empty ng-invalid ng-invalid-required ng-valid-minlength ng-valid-maxlength" placeholder="Tên Video có 3 - 50 ký tự" ng-model="editData.data.attributes.name" ng-minlength="3" ng-maxlength="50" required="">
+
+                            <!-- alert input Name -->
+
+                            <div ng-show="form.name.$invalid" class="text-warning">
+                                <div ng-show="form.name.$error.requied" class="ng-hide">
+                                    <span class="glyphicon glyphicon-warning-sign"></span> Tên Video không được để trống
+                                </div>
+                                <div ng-show="form.name.$error.minlength || form.name.$error.maxlength" class="ng-hide">
+                                    <span class="glyphicon glyphicon-warning-sign"></span> Tên Video có 3 - 50 ký tự
+                                </div>
+                            </div>
+                            <div ng-show="form.name.$valid" class="text-success ng-hide">
+                                <span class="glyphicon glyphicon-ok"></span> Tên Video hợp lệ
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!--Description-->
+
+                    <div class="form-group">
+                        <label for="description" class="control-label col-md-2 col-sm-2">Mô Tả</label>
+                        <div class="col-md-5 col-sm-5">
+                            <textarea name="description" class="form-control ng-pristine ng-untouched ng-valid ng-empty" placeholder="" rows="5" ng-model="editData.data.attributes.description"></textarea>
+                        </div>
+                    </div>
+
+                    <!--Keywords-->
+
+                    <div class="form-group">
+                        <label for="keywords" class="control-label col-md-2 col-sm-2">Từ Khóa</label>
+                        <div class="col-md-5 col-sm-5">
+                            <input type="text" name="keywords" class="form-control ng-pristine ng-untouched ng-valid ng-empty" placeholder="Từ khóa giúp tìm kiếm Video dễ hơn" ng-model="editData.data.attributes.keywords">
+                        </div>
+                    </div>
+
+                    <!--The selector of Playlist-->
+
+                    <div class="form-group">
+                        <label for="playlistId" name="playlistId" class="control-label col-md-2 col-sm-2">Playlist <strong class="text-danger">*</strong></label>
+                        <div class="col-md-5 col-sm-5">
+                            <select class="form-control ng-untouched ng-empty ng-invalid ng-invalid-required ng-dirty ng-valid-parse" ng-model="editData.data.attributes.playlistId" required="">
+                                <!-- ngIf: videoIsInPlaylist -->
+                                <!-- ngRepeat: playlist in playlistArray --><option ng-repeat="playlist in playlistArray" value="" class="ng-binding ng-scope" selected="selected">Chưa có playlist</option><!-- end ngRepeat: playlist in playlistArray -->
+                            </select>
+                        </div>
+                    </div>
+                    <!-- Thumbnail -->
+                    <div class="form-group">
+                        <label for="authorName" class="control-label col-md-2 col-sm-2">Link Ảnh Bìa</label>
+                        <div class="col-md-5 col-sm-5">
+                            <input name="authorName" type="text" class="form-control ng-pristine ng-untouched ng-valid ng-empty" ng-model="editData.data.attributes.thumbnail" placeholder="Nếu để trống, ảnh bìa sẽ là thumbnail mặc định">
+                        </div>
+                    </div>
+
+                    <!--The Button-->
+
+                    <div class="form-group">
+                        <div class="col-md-2 col-sm-2">
+                            &nbsp;
+                        </div>
+
+                        <div class="col-md-10 col-sm-10">
+                            <button type="button" class="btn btn-warning" ng-disabled="!form.$dirty || form.$dirty &amp;&amp; form.$invalid" ng-click="editVideo()" disabled="disabled"><span class="glyphicon glyphicon-edit"></span> Sửa
+                            </button>
+                            <button type="button" class="btn btn-info" ng-click="resetEditForm()">
+                                <span class="glyphicon glyphicon-refresh"></span> Reset
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-triangle-left"></span> <strong>Back</strong></button>
+            </div>
+        </div>
+
+    </div>
+</section>

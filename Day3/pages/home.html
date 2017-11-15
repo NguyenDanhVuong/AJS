@@ -1,0 +1,136 @@
+<header class="row">
+    <!--The Slide Show-->
+    <div class="col-md-6 col-md-offset-1">
+        <div id="myCarousel" class="carousel slide" data-ride="carousel" ng-init="getTopTrendingForSlideShow()">
+            <!-- Indicators -->
+            <ol class="carousel-indicators">
+                <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                <li data-target="#myCarousel" data-slide-to="1"></li>
+                <li data-target="#myCarousel" data-slide-to="2"></li>
+            </ol>
+
+            <!-- Wrapper for slides -->
+            <div class="carousel-inner" role="list-box">
+                
+                <!-- ngRepeat: video in topTrendingVideos -->
+                <div class="item  active" ng-class="{active:$first}">
+                    <a href="#!watch?youtubeId=4mK-rH6c-20">
+                        <img ng-src="https://i.ytimg.com/vi/HfxhbrHMy3E/hqdefault.jpg" alt="VÌ YÊU MÀ ĐẾN | QUANG BẢO RA VỀ CÙNG CÔ GÁI CÓ NỤ CƯỜI TỎA NẮNG" title="VÌ YÊU MÀ ĐẾN | QUANG BẢO RA VỀ CÙNG CÔ GÁI CÓ NỤ CƯỜI TỎA NẮNG" style="width:100%">
+                    </a>
+                    <div class="carousel-caption hover-flash">
+                        <a href="{{response.data.items}}" style="text-decoration: none; color: floralwhite">
+                            <h4 class="ng-binding">VÌ YÊU MÀ ĐẾN | QUANG BẢO RA VỀ CÙNG CÔ GÁI CÓ NỤ CƯỜI TỎA NẮNG</h4>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- end ngRepeat: video in topTrendingVideos -->
+                <div class="item " ng-class="{active:$first}">
+                    <a href="#!watch?youtubeId=KwR66WLn_TU">
+                        <img src="https://i.ytimg.com/vi/KwR66WLn_TU/hqdefault.jpg" alt="HTV VÌ YÊU MÀ ĐẾN | &quot;Happy ending&quot; đầu tiên của chương trình | VYMD #9 FULL | 9/11/2017" title="HTV VÌ YÊU MÀ ĐẾN | &quot;Happy ending&quot; đầu tiên của chương trình | VYMD #9 FULL | 9/11/2017" style="width:100%">
+                    </a>
+                    <div class="carousel-caption hover-flash">
+                        <a href="#!watch?youtubeId=KwR66WLn_TU" style="text-decoration: none; color: floralwhite">
+                            <h4 class="ng-binding">HTV VÌ YÊU MÀ ĐẾN | "Happy ending" đầu tiên của chương trình | VYMD #9 FULL | 9/11/2017</h4>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- end ngRepeat: video in topTrendingVideos -->
+                <div class="item" ng-class="{active:$first}" >
+                    <a href="#!watch?youtubeId=HfxhbrHMy3E">
+                        <img src="https://i.ytimg.com/vi/HfxhbrHMy3E/hqdefault.jpg" alt="Sống Xa Anh Chẳng Dễ Dàng | Bảo Anh, Huỳnh Anh, Mai Hồ ft. Mr. Siro (Official MV)" title="Sống Xa Anh Chẳng Dễ Dàng | Bảo Anh, Huỳnh Anh, Mai Hồ ft. Mr. Siro (Official MV)" style="width:100%">
+                    </a>
+                    <div class="carousel-caption hover-flash">
+                        <a href="#!watch?youtubeId=HfxhbrHMy3E" style="text-decoration: none; color: floralwhite">
+                            <h4 class="ng-binding">Sống Xa Anh Chẳng Dễ Dàng | Bảo Anh, Huỳnh Anh, Mai Hồ ft. Mr. Siro (Official MV)</h4>
+                        </a>
+                    </div>
+                </div>
+                <!-- end ngRepeat: video in topTrendingVideos -->
+
+            </div>
+
+            <!-- Left and right controls -->
+            <a class="left carousel-control" data-target="#myCarousel" data-slide="prev">
+                <span class="glyphicon glyphicon-chevron-left"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="right carousel-control" data-target="#myCarousel" data-slide="next">
+                <span class="glyphicon glyphicon-chevron-right"></span>
+                <span class="sr-only">Next</span>
+            </a>
+        </div>
+    </div>
+    
+    <!--Panel of New Video-->
+
+    <div class="col-md-4" ng-init="loadnewUploadVideo()" data-spy="scroll">
+        <div class="panel panel-primary custom-hr">
+            <div class="panel-heading">
+                <h3 class="panel-title">Video mới thêm</h3>
+            </div>
+                <!-- ngRepeat: video in yourNewVideo -->
+                <div class="panel-body ng-scope" ng-repeat="video in yourNewVideo">
+
+                <!--The Video-->
+                
+                <div class="row">
+                    <div class="col-md-4 col-sm-6 col-ms-6 col-xs-12">
+                        <a href="">
+                            <img src="https://i.ytimg.com/vi/SA35ldy92s0/mqdefault.jpg" alt="" class="hover-flash" style="width: 100%"></a>
+                    </div>
+
+                    <div class="col-md-8 col-sm-6 col-ms-6 col-xs-12">
+                        <a href=""><strong ng-bind="video.attributes.name" class="ng-binding"></strong></a>
+                        <p class="ng-binding"><strong>Xuất bản:</strong></p>
+                    </div>
+                </div>
+                <hr>
+            </div><!-- end ngRepeat: video in yourNewVideo -->
+            
+
+                
+            
+        </div>
+    </div>
+
+</header>
+<section>
+    <hr>
+    <h4>Có thể bạn sẽ thích</h4>
+    <br>
+    <div class="row">
+        <div class="col-md-9">
+            <form ng-init="initSearchingItems" class="ng-pristine ng-valid">
+                <div class="form-group">
+                    <div class="input-group">
+                        <input type="text" class="form-control ng-pristine ng-untouched ng-valid ng-empty" placeholder="Tìm Kiếm" ng-model="youtubeKeyword">
+                        <span class="input-group-btn">
+                    <button type="submit" class="btn btn-primary" ng-click="searchVideo()">
+                        <span class="glyphicon glyphicon-search"></span>
+                    </button>
+                </span>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <span class="cssload-jumping ng-hide" ng-show="downloadingVideo">
+            <span></span><span></span><span></span><span></span><span></span>
+        </span>
+    </div>
+    <div class="row display-flex" ng-init="loadVideofromYT()">
+        <!-- ngRepeat: video in videosArray -->
+        <div class="col-xs-12 col-md-3 col-ms-6 col-sm-4 ng-scope" ng-repeat="video in videosArray">
+            <a class="hover-flash thumbnail shadow-box" href="" ng-click="playVideo(video.attributes.youtubeId, video.attributes.name, video.attributes.description, video.attributes.thumbnail);" data-toggle="modal" data-target="#myModal" ng-drag="true" ng-drag-data="video" data-allow-transform="true" draggable="false">
+                <img ng-src="" alt="" src="https://i.ytimg.com/vi/SA35ldy92s0/mqdefault.jpg">
+                <span class="glyphicon glyphicon-play thumbnail-play-icon"></span>
+            </a>
+            <a href="" class="caption" style="text-decoration: none; color: black;" ng-click="playVideo(video.attributes.youtubeId, video.attributes.name, video.attributes.description, video.attributes.thumbnail);" data-toggle="modal" data-target="#myModal">
+                <strong ng-bind="video.attributes.name" class="ng-binding"></strong>
+            </a>
+            <p>Xuất bản: <span ng-bind="video.attributes.createdTimeMLS" class="ng-binding"></span></p>
+        </div><!-- end ngRepeat: video in videosArray -->
+        
+    </div>
+</section>

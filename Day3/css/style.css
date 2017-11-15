@@ -1,0 +1,422 @@
+body {
+	padding-top: 60px;
+	padding-bottom: 60px;
+}
+
+.navbar-default .navbar-nav > li > a {
+    color: #2d44d4;
+}
+.navbar-default .navbar-brand {
+    color: #f14040;
+}
+.custom-hr hr {
+	margin-top: 20px;
+	margin-bottom: -10px;
+}
+.custom-hr div:last-child hr {
+	display: none;
+}
+.shadow-box {
+	box-shadow: 2px 2px 5px rgba(0,0,0,1);
+}
+.padding-n-line {
+	padding-bottom: 5px;
+	border-bottom: 1px solid rgba(0,0,0,0.5)
+}
+.crop {
+	width: 100%;
+	overflow: hidden;
+	height: 300px;
+}
+.display-flex {
+	display: flex;
+	flex-wrap: wrap;
+}
+/*Thumb nail*/
+/*The option delete and fix for every thumbnail in playlist*/
+.video-option {
+	width: 100%;
+	position: absolute;
+	display: inline-block;
+	bottom: 2.5%;
+	background: rgba(236,236,236,0);
+	height: 50px;
+	line-height: 50px;
+}
+.video-option div {
+	background: rgba(236,236,236,0);
+	border-radius: 3px;
+	width: 97.5%;
+	padding: 0 31%;
+	position: absolute;
+	top: 50%;
+	opacity: 0;
+}
+.video-option:hover > div {
+	top: 0;
+	opacity: 1;
+	background: rgba(236,236,236,0.7);
+	transition: top 0.2s, opacity 0.7s, background 0.1s;
+}
+.thumbnail-play-icon {
+	color: white;
+	font-size: 40px;
+	opacity: 0.6;
+	position: absolute;
+	right: 43%;
+	top: 22%;
+	text-shadow: 0 1px 3px rgba(0,0,0,.5);
+	transition:all 500ms ease-in-out;
+}
+a:hover .thumbnail-play-icon {
+	color: #d43f3a;
+	opacity:0.8;
+	text-shadow:0 1px 3px rgba(0,0,0,.9);
+}
+/*Reponsive for icon play, video option and crop the image*/
+@media (min-width:1200px) {
+	.playlist-thumbnail-icon {
+		top: 35%;
+	}
+}
+@media (min-width:991px) and (max-width: 1199px) {
+	.thumbnail-play-icon {
+		font-size: 35px;
+		display:table;
+		margin:0 auto;
+		top: 20%;
+	}
+	.playlist-thumbnail-icon {
+		top: 37%;
+	}
+	.video-option div {
+		padding: 0 28%;
+		width: 96.5%;
+	}
+	.video-option {
+		height: 45px;
+		line-height: 45px;
+	}
+	.crop {
+		height: 250px;
+	}
+}
+@media (min-width: 768px) and (max-width: 990px) {
+	.thumbnail-play-icon {
+		top: 20%;
+		font-size: 30px;
+	}
+	.playlist-thumbnail-icon {
+		font-size: 30px;
+		top: 37%;
+	}
+	.video-option div {
+		padding: 0 23%;
+		width: 96.5%;
+	}
+	.video-option {
+		height: 37px;
+		line-height: 37px;
+	}
+	.crop {
+		height: 220px;
+	}
+}
+@media (min-width:481px) and (max-width: 767px) {
+	.thumbnail-play-icon {
+		font-size: 28px;
+		top: 21%;
+	}
+	.playlist-thumbnail-icon {
+		font-size: 25px;
+		top: 37%;
+	}
+	.video-option div {
+		padding: 0 20%;
+		width: 95.5%;
+	}
+	.video-option {
+		height: 35px;
+		line-height: 35px;
+	}
+	.res-container {
+		max-width: 470px;
+	}
+	.crop {
+		height: 200px;
+	}
+}
+@media (min-width:320px) and (max-width: 480px) {
+	.thumbnail-play-icon {
+		font-size: 35px;
+		top: 28%;
+	}
+	.playlist-thumbnail-icon {
+		font-size: 40px;
+		top: 35%;
+	}
+	.video-option div {
+		padding: 0 28%;
+		width: 97%;
+	}
+	.video-option {
+		height: 35px;
+		line-height: 35px;
+	}
+	.res-container {
+		max-width: 365px;
+	}
+	.crop {
+		height: 350px;
+	}
+}
+#alertModal .modal-dialog .modal-content .modal-header h4.modal-title {
+	color: red;
+	text-transform: uppercase;
+	text-align: center;
+	font-weight: bold;
+}
+
+			/*The login Form*/
+
+#loginForm {
+	min-width: 250px;
+	padding: 14px 14px 0;
+	overflow: hidden;
+	background-color: #f8f8f8;
+	padding-bottom: 15px;
+	padding-top: 15px;
+}
+	/* Hiding the checkbox, but allowing it to be focused */
+.badgebox
+{
+	opacity: 0;
+}
+
+.badgebox + .badge
+{
+	/* Move the check mark away when unchecked */
+	text-indent: -999999px;
+	/* Makes the badge's width stay the same checked and unchecked */
+	width: 27px;
+}
+
+.badgebox:focus + .badge
+{
+	/* Set something to make the badge looks focused */
+	/* This really depends on the application, in my case it was: */
+
+	/* Adding a light border */
+	box-shadow: inset 0px 0px 5px;
+	/* Taking the difference out of the padding */
+}
+
+.badgebox:checked + .badge
+{
+	/* Move the check mark back when checked */
+	text-indent: 0;
+}
+
+main.container section.row div.col-md-3.col-sm-3 div.row {
+	border-bottom: 1px solid #D7D7D7;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	font-size: 12px;
+}
+@keyframes blur-when-hover {
+	from {opacity: 0.2;}
+	to {opacity: 1;}
+}
+.hover-flash:hover {
+	animation-name: blur-when-hover;
+	animation-duration: 1s;
+}
+.modal.fade .modal-dialog {
+     -webkit-transform: scale(0.1);
+     -moz-transform: scale(0.1);
+     -ms-transform: scale(0.1);
+     transform: scale(0.1);
+     top: 300px;
+     opacity: 0;
+     -webkit-transition: all 0.3s;
+     -moz-transition: all 0.3s;
+     transition: all 0.3s;
+}
+
+.modal.fade.in .modal-dialog {
+    -webkit-transform: scale(1);
+    -moz-transform: scale(1);
+    -ms-transform: scale(1);
+    transform: scale(1);
+    -webkit-transform: translate3d(0, -250px, 0);
+    transform: translate3d(0, -250px, 0);
+    opacity: 1;
+}
+
+			/*Loading animation*/
+
+.cssload-jumping{
+	position:relative;
+	display:inline-block;
+	width:44px;
+}
+
+.cssload-jumping, .cssload-jumping * {
+	box-sizing: border-box;
+}
+
+.cssload-jumping span {
+	display: inline-block;
+	height: 6px;
+	width: 6px;
+	background: rgb(47,172,155);
+	border-radius: 200px;
+	background-clip: padding-box;
+	-o-background-clip: padding-box;
+	-ms-background-clip: padding-box;
+	-webkit-background-clip: padding-box;
+	-moz-background-clip: padding-box;
+}
+
+.cssload-jumping span:nth-child(1) {
+	animation: scale 0.6s 0.055s infinite cubic-bezier(0.6, -0.28, 0.735, 0.045);
+	-o-animation: scale 0.6s 0.055s infinite cubic-bezier(0.6, -0.28, 0.735, 0.045);
+	-ms-animation: scale 0.6s 0.055s infinite cubic-bezier(0.6, -0.28, 0.735, 0.045);
+	-webkit-animation: scale 0.6s 0.055s infinite cubic-bezier(0.6, -0.28, 0.735, 0.045);
+	-moz-animation: scale 0.6s 0.055s infinite cubic-bezier(0.6, -0.28, 0.735, 0.045);
+}
+.cssload-jumping span:nth-child(2) {
+	animation: scale 0.6s 0.12s infinite cubic-bezier(0.6, -0.28, 0.735, 0.045);
+	-o-animation: scale 0.6s 0.12s infinite cubic-bezier(0.6, -0.28, 0.735, 0.045);
+	-ms-animation: scale 0.6s 0.12s infinite cubic-bezier(0.6, -0.28, 0.735, 0.045);
+	-webkit-animation: scale 0.6s 0.12s infinite cubic-bezier(0.6, -0.28, 0.735, 0.045);
+	-moz-animation: scale 0.6s 0.12s infinite cubic-bezier(0.6, -0.28, 0.735, 0.045);
+}
+.cssload-jumping span:nth-child(3) {
+	animation: scale 0.6s 0.175s infinite cubic-bezier(0.6, -0.28, 0.735, 0.045);
+	-o-animation: scale 0.6s 0.175s infinite cubic-bezier(0.6, -0.28, 0.735, 0.045);
+	-ms-animation: scale 0.6s 0.175s infinite cubic-bezier(0.6, -0.28, 0.735, 0.045);
+	-webkit-animation: scale 0.6s 0.175s infinite cubic-bezier(0.6, -0.28, 0.735, 0.045);
+	-moz-animation: scale 0.6s 0.175s infinite cubic-bezier(0.6, -0.28, 0.735, 0.045);
+}
+.cssload-jumping span:nth-child(4) {
+	animation: scale 0.6s 0.24s infinite cubic-bezier(0.6, -0.28, 0.735, 0.045);
+	-o-animation: scale 0.6s 0.24s infinite cubic-bezier(0.6, -0.28, 0.735, 0.045);
+	-ms-animation: scale 0.6s 0.24s infinite cubic-bezier(0.6, -0.28, 0.735, 0.045);
+	-webkit-animation: scale 0.6s 0.24s infinite cubic-bezier(0.6, -0.28, 0.735, 0.045);
+	-moz-animation: scale 0.6s 0.24s infinite cubic-bezier(0.6, -0.28, 0.735, 0.045);
+}
+.cssload-jumping span:nth-child(5) {
+	animation: scale 0.6s 0.295s infinite cubic-bezier(0.6, -0.28, 0.735, 0.045);
+	-o-animation: scale 0.6s 0.295s infinite cubic-bezier(0.6, -0.28, 0.735, 0.045);
+	-ms-animation: scale 0.6s 0.295s infinite cubic-bezier(0.6, -0.28, 0.735, 0.045);
+	-webkit-animation: scale 0.6s 0.295s infinite cubic-bezier(0.6, -0.28, 0.735, 0.045);
+	-moz-animation: scale 0.6s 0.295s infinite cubic-bezier(0.6, -0.28, 0.735, 0.045);
+}
+
+
+
+@keyframes scale {
+	0% {
+		transform: scale(0);
+	}
+	25% {
+		transform: scale(0.9, 0.9);
+		background: rgb(147,225,215);
+	}
+	50% {
+		transform: scale(1, 1);
+		margin: 0 1px;
+		background: rgb(47,172,155);
+	}
+	100% {
+		transform: scale(0);
+	}
+}
+
+@-o-keyframes scale {
+	0% {
+		-o-transform: scale(0);
+	}
+	25% {
+		-o-transform: scale(0.9, 0.9);
+		background: rgb(147,225,215);
+	}
+	50% {
+		-o-transform: scale(1, 1);
+		margin: 0 1px;
+		background: rgb(47,172,155);
+	}
+	100% {
+		-o-transform: scale(0);
+	}
+}
+
+@-ms-keyframes scale {
+	0% {
+		-ms-transform: scale(0);
+	}
+	25% {
+		-ms-transform: scale(0.9, 0.9);
+		background: rgb(147,225,215);
+	}
+	50% {
+		-ms-transform: scale(1, 1);
+		margin: 0 1px;
+		background: rgb(47,172,155);
+	}
+	100% {
+		-ms-transform: scale(0);
+	}
+}
+
+@-webkit-keyframes scale {
+	0% {
+		-webkit-transform: scale(0);
+	}
+	25% {
+		-webkit-transform: scale(0.9, 0.9);
+		background: rgb(147,225,215);
+	}
+	50% {
+		-webkit-transform: scale(1, 1);
+		margin: 0 1px;
+		background: rgb(47,172,155);
+	}
+	100% {
+		-webkit-transform: scale(0);
+	}
+}
+
+@-moz-keyframes scale {
+	0% {
+		-moz-transform: scale(0);
+	}
+	25% {
+		-moz-transform: scale(0.9, 0.9);
+		background: rgb(147,225,215);
+	}
+	50% {
+		-moz-transform: scale(1, 1);
+		margin: 0 1px;
+		background: rgb(47,172,155);
+	}
+	100% {
+		-moz-transform: scale(0);
+	}
+}
+
+#slides_control > div{
+  height: 200px;
+}
+img{
+  margin:auto;
+  width: 400px;
+}
+#slides_control {
+  position:absolute;
+  width: 400px;
+  left:50%;
+  top:20px;
+ margin-left:-200px;
+}

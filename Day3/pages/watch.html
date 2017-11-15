@@ -1,0 +1,239 @@
+<main class="container ng-scope">
+    <section>
+        <ol class="breadcrumb">
+            <li><a href="index.html">Trang chủ</a></li>
+            <li class="active">Xem Video</li>
+        </ol>
+    </section>
+
+    <div class="alert alert-danger text-center ng-hide" ng-show="isErrorVideo">
+        <p ng-bind="alertError.code" class="ng-binding"></p>
+        <p ng-bind="alertError.title" class="ng-binding"></p>
+        <p ng-bind="alertError.detail" class="ng-binding"></p>
+    </div>
+    <section class="row">
+        <!-- Video Player -->
+        <div class="col-md-8 col-sm-9" ng-init="createVideoData()">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <div class="embed-responsive embed-responsive-16by9">
+                        <iframe class="embed-responsive-item" allowfullscreen="" autoplay="?1" ng-src="https://www.youtube.com/embed/CwfoyVa980U?autoplay=1" src="https://www.youtube.com/embed/CwfoyVa980U?autoplay=1"></iframe>
+                    </div>
+                </div>
+                <div class="panel-footer">
+                        <div class="row">
+                            <div class="col-md-8 col-sm-7 col-xs-12">
+                                <h4><strong class="ng-binding">Charlie Puth - "How Long" [Official Video]</strong></h4>
+                                <p class="ng-binding"><strong>Xuất bản:</strong> 10/30/2017</p>
+                                <p><strong>Playlist:</strong> <span ng-show="completeLoadingVideoData" class="">No <span ng-bind="videoData.attributes.playlistId" class="ng-binding">0</span></span></p>
+                            </div>
+                            <!-- ngIf: !videoIsInPlaylist && userToken !== null -->
+                            <!-- ngIf: videoIsInPlaylist --><div class="col-md-4 col-sm-5 col-xs-12 ng-scope" ng-if="videoIsInPlaylist">
+                                <div class="btn-group pull-right">
+                                    <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#editModal">
+                                        <span class="glyphicon glyphicon-edit"></span> Sửa
+                                    </button>
+                                    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#alertDeleteModal">
+                                        <span class="glyphicon glyphicon-trash"></span> Xóa
+                                    </button>
+                                </div>
+                            </div><!-- end ngIf: videoIsInPlaylist -->
+                        </div>
+                    <br>
+                        <span style="white-space: pre-line" class="ng-binding"><strong>Mô tả:</strong> Download and Stream "How Long": https://Atlantic.lnk.to/HowLongID Pre-Order Voicenotes: https://Atlantic.lnk.to/VoicenotesID Exclusive VoiceNotes ...</span>
+                        <br>
+                        <hr>
+                        <br>
+                        <pre class="ng-binding"><strong>Từ khóa: </strong> </pre>
+                </div>
+            </div>
+        </div> <!-- Video Player -->
+        <!-- Right Side -->
+        <div class="col-md-4 col-sm-3">
+            <!-- ngIf: userToken !== null -->
+            <div class="text-center ng-scope" ng-init="loadUserPlaylist()" ng-if="userToken !== null">
+                <strong>Playlist của bạn</strong>
+            </div><!-- end ngIf: userToken !== null -->
+            <br>
+            <!-- ngRepeat: playlist in playlistArray --><div class="row ng-scope" ng-repeat="playlist in playlistArray" style="margin-bottom: 5px;">
+                <div class="col-md-6 col-sm-12 col-xs-4">
+                    <a ng-href="#!watch?playlistId=0" href="#!watch?playlistId=0">
+                        <div class="hover-flash" style="height: 150px; background-image: url(https://pbs.twimg.com/profile_images/735499326936338432/y0FMUpYW.jpg); background-size: cover; width: 100%; )">
+                        </div>
+                    </a>
+                </div>
+                <div class="col-md-6 col-sm-12 col-xs-8">
+                    <a ng-href="#!watch?playlistId=0" href="#!watch?playlistId=0"><strong ng-bind="playlist.attributes.name" class="ng-binding">Playlist tổng hợp</strong></a>
+                </div>
+            </div><!-- end ngRepeat: playlist in playlistArray -->
+
+            <br>
+            <hr>
+            <div class="text-center">
+                <strong ng-show="videoIsInPlaylist">Cùng Playlist</strong>
+                <!-- ngIf: !videoIsInPlaylist -->
+            </div>
+            <br>
+            <!-- ngRepeat: video in videosArray -->
+            <div class="row ng-scope" ng-repeat="video in videosArray" style="margin-bottom: 3px;">
+                <div class="col-md-6 col-sm-12 col-xs-4">
+                    <!-- ngIf: videoIsInPlaylist -->
+                    <a ng-href="#!watch?id=1509381270676&amp;playlistId=0" ng-if="videoIsInPlaylist" class="ng-scope" href="#!watch?id=1509381270676&amp;playlistId=0">
+                        <img src="https://i.ytimg.com/vi/CwfoyVa980U/mqdefault.jpg" class="hover-flash" alt="CwfoyVa980U" title="Charlie Puth - &quot;How Long&quot; [Official Video]" style="width:100%">
+                    </a><!-- end ngIf: videoIsInPlaylist -->
+                    <!-- ngIf: !videoIsInPlaylist -->
+                </div>
+                <div class="col-md-6 col-sm-12 col-xs-8">
+                    <p>
+                        <!-- ngIf: videoIsInPlaylist --><a ng-href="#!watch?id=1509381270676&amp;playlistId=0" ng-if="videoIsInPlaylist" class="ng-scope" href="#!watch?id=1509381270676&amp;playlistId=0"><strong ng-bind="video.attributes.name" class="ng-binding">Charlie Puth - "How Long" [Official Video]</strong></a><!-- end ngIf: videoIsInPlaylist -->
+                        <!-- ngIf: !videoIsInPlaylist -->
+                    </p>
+                </div>
+            </div>
+            <!-- end ngRepeat: video in videosArray -->
+        </div>
+    </section>
+
+    <!-- Modal Edit -->
+    <section class="modal fade" id="editModal" role="dialog">
+        <div class="modal-dialog modal-lg">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">×</button>
+
+                    <!-- ngIf: videoIsInPlaylist -->
+                    <h4 class="modal-title video-title text-center ng-scope" ng-if="videoIsInPlaylist">Chỉnh sửa Video</h4><!-- end ngIf: videoIsInPlaylist -->
+                    <!-- ngIf: !videoIsInPlaylist -->
+                </div>
+                <div class="modal-body">
+                    <!-- Alert Success -->
+                    <div class="alert alert-success text-center ng-hide" ng-show="editSuccess">
+                        <span class="glyphicon glyphicon-ok"></span> <!-- ngIf: videoIsInPlaylist --><strong ng-if="videoIsInPlaylist" class="ng-scope">Sửa thông tin video thành công</strong><!-- end ngIf: videoIsInPlaylist -->
+                                                                        <!-- ngIf: !videoIsInPlaylist -->
+                    </div>
+                    <!-- Alert Error -->
+                    <div class="alert alert-danger text-center ng-hide" ng-show="editError">
+                        <span class="glyphicon glyphicon-remove"></span> <strong class="ng-binding"></strong>
+                    </div>
+                    <form action="post" class="form-horizontal ng-pristine ng-valid-minlength ng-valid-maxlength ng-valid ng-valid-required" name="form" novalidate="">
+                        <div class="form-group">
+                            <label for="videoId" class="control-label col-md-2 col-sm-2">Video ID <strong class="text-danger">*</strong></label>
+                            <div class="col-md-5 col-sm-5">
+                                    <input name="videoId" type="text" class="form-control ng-pristine ng-untouched ng-valid ng-not-empty" disabled="true" ng-model="editData.data.attributes.youtubeId">
+                            </div>
+
+                        </div>
+
+                        <!--Name-->
+                        <div class="form-group">
+                            <label for="name" class="control-label col-md-2 col-sm-2">Tên Video <strong class="text-danger">*</strong></label>
+                            <div class="col-md-5 col-sm-5">
+                                <input name="name" type="text" class="form-control ng-pristine ng-untouched ng-valid-minlength ng-valid-maxlength ng-not-empty ng-valid ng-valid-required" placeholder="Tên Video có 3 - 50 ký tự" ng-model="editData.data.attributes.name" ng-minlength="3" ng-maxlength="50" required="">
+
+                                <!-- alert input Name -->
+
+                                <div ng-show="form.name.$invalid" class="text-warning ng-hide">
+                                    <div ng-show="form.name.$error.requied" class="ng-hide">
+                                        <span class="glyphicon glyphicon-warning-sign"></span> Tên Video không được để trống
+                                    </div>
+                                    <div ng-show="form.name.$error.minlength || form.name.$error.maxlength" class="ng-hide">
+                                        <span class="glyphicon glyphicon-warning-sign"></span> Tên Video có 3 - 50 ký tự
+                                    </div>
+                                </div>
+                                <div ng-show="form.name.$valid" class="text-success">
+                                    <span class="glyphicon glyphicon-ok"></span> Tên Video hợp lệ
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <!--Description-->
+
+                        <div class="form-group">
+                            <label for="description" class="control-label col-md-2 col-sm-2">Mô Tả</label>
+                            <div class="col-md-5 col-sm-5">
+                                <textarea name="description" class="form-control ng-pristine ng-untouched ng-valid ng-not-empty" placeholder="" rows="5" ng-model="editData.data.attributes.description"></textarea>
+                            </div>
+                        </div>
+
+                        <!--Keywords-->
+
+                        <div class="form-group">
+                            <label for="keywords" class="control-label col-md-2 col-sm-2">Từ Khóa</label>
+                            <div class="col-md-5 col-sm-5">
+                                <input type="text" name="keywords" class="form-control ng-pristine ng-untouched ng-valid ng-empty" placeholder="Từ khóa giúp tìm kiếm Video dễ hơn" ng-model="editData.data.attributes.keywords">
+                            </div>
+                        </div>
+
+                        <!--The selector of Playlist-->
+
+                        <div class="form-group">
+                            <label for="playlistId" name="playlistId" class="control-label col-md-2 col-sm-2">Playlist <strong class="text-danger">*</strong></label>
+                            <div class="col-md-5 col-sm-5">
+                                <select class="form-control ng-pristine ng-untouched ng-not-empty ng-valid ng-valid-required" ng-model="editData.data.attributes.playlistId" required=""><option value="? number:0 ?" selected="selected"></option>
+                                  
+                                    <option value="" ng-if="videoIsInPlaylist" class="ng-scope">Không đổi</option> 
+                                    <option ng-repeat="playlist in playlistArray" value="0" class="ng-binding ng-scope">Playlist tổng hợp</option>
+                                </select>
+                            </div>
+                        </div>
+                        <!-- Thumbnail -->
+                        <div class="form-group">
+                            <label for="authorName" class="control-label col-md-2 col-sm-2">Link Ảnh Bìa</label>
+                            <div class="col-md-5 col-sm-5">
+                                <input name="authorName" type="text" class="form-control ng-pristine ng-untouched ng-valid ng-not-empty" ng-model="editData.data.attributes.thumbnail" placeholder="Nếu để trống, ảnh bìa sẽ là thumbnail mặc định">
+                            </div>
+                        </div>
+
+                        <!--The Button-->
+
+                        <div class="form-group">
+                            <div class="col-md-2 col-sm-2">
+                                &nbsp;
+                            </div>
+
+                            <div class="col-md-10 col-sm-10">
+                                <!-- ngIf: videoIsInPlaylist -->
+                                <button type="button" class="btn btn-warning ng-scope" ng-disabled="!form.$dirty || form.$dirty &amp;&amp; form.$invalid" ng-click="editVideo()" ng-if="videoIsInPlaylist" disabled="disabled">
+                                    <span class="glyphicon glyphicon-edit"></span> Sửa
+                                </button>
+                                <!-- end ngIf: videoIsInPlaylist -->
+                                <!-- ngIf: !videoIsInPlaylist -->
+                                <button type="button" class="btn btn-info" title="Tự Động chỉnh sửa form theo dữ liệu chuẩn của youtube" ng-click="autoComplete()">
+                                    <span class="glyphicon glyphicon-star-empty"></span> Tự Động
+                                </button>
+                                <!-- ngIf: videoIsInPlaylist -->
+                                <button type="button" class="btn btn-danger ng-scope" data-toggle="modal" data-target="#alertDeleteModal" title="Xóa video khỏi playlist của bạn" ng-if="videoIsInPlaylist">
+                                    <span class="glyphicon glyphicon-trash"></span> Xóa
+                                </button>
+                                <!-- end ngIf: videoIsInPlaylist -->
+                                <!-- ngIf: videoIsInPlaylist --><button type="button" class="btn btn-info ng-scope" ng-click="resetEditForm()" ng-if="videoIsInPlaylist">
+                                    <span class="glyphicon glyphicon-refresh"></span> Reset
+                                </button>
+                                <!-- end ngIf: videoIsInPlaylist -->
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-triangle-left"></span> <strong>Back</strong></button>
+                </div>
+            </div>
+
+        </div>
+    </section>
+    <!-- Modal Alert Delete -->
+    <div class="modal fade" id="alertDeleteModal" role="dialog">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content text-warning">
+                <div class="modal-body text-warning text-center">
+                    <h5><strong>Bạn thực sự muốn xóa video này?</strong></h5>
+                    <button type="button" class="btn btn-danger" ng-click="deleteVideo()">Xác nhận</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</main> 
